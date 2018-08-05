@@ -1,14 +1,39 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Hello, world!
+      Headstrong
     </ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  One day, Headstrong will live here.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-card>
+    <ion-card-header>
+      <ion-icon float-left name="happy" class="happy-icon"></ion-icon>
+      <span float-right>7:25pm</span>
+    </ion-card-header>
+    <ion-card-content>
+      I had a good day today. I watched tv, walked the dog, did homework...
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start small clear>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        <button ion-button icon-end float-right small clear>
+          <ion-icon name="brush"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>

@@ -16,5 +16,5 @@ Logged in users will be able to see an overview of their posts via a calendar vi
 ### Technologies
 - MongoDB
 - Java
-- Sprint REST
+- Spring REST
 - Ionic
