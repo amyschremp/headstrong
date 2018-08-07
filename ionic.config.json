@@ -1,6 +1,8 @@
 {
   "name": "headstrong",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "app_id": ""
 }
