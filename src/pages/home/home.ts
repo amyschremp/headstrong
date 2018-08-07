@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
-import { ModalPage } from '../modal/modal';
+import { ModalController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -8,7 +7,7 @@ import { ModalPage } from '../modal/modal';
 })
 export class HomePage {
 
-  constructor(private navCtrl: NavController, private modal: ModalController) {
+  constructor(private modal: ModalController) {
 
   }
 

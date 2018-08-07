@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ModalPage</ion-title>
+    <ion-title>New Journal Entry</ion-title>
     <ion-buttons start>
       <button ion-button (click)="closeModal()">Cancel</button>
     </ion-buttons>
@@ -17,28 +17,36 @@
 
 
 <ion-content padding>
+<form>
+  <ion-list radio-group>
 
-<!--   <ion-list radio-group>
+      <ion-list-header no-lines>
+        How are you feeling?
+      </ion-list-header>
+    
+      <ion-item>
+        <ion-label>Good</ion-label>
+        <ion-radio value="good"></ion-radio>
+      </ion-item>
 
-    <ion-list-header>
-      How are you feeling?
-    </ion-list-header>
-  
-    <ion-item>
-      <ion-label>Good</ion-label>
-      <ion-radio value="good"></ion-radio>
-    </ion-item>
+      <ion-item>
+        <ion-label>Okay</ion-label>
+        <ion-radio value="okay"></ion-radio>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Okay</ion-label>
-      <ion-radio value="okay"></ion-radio>
-    </ion-item>
+      <ion-item>
+        <ion-label>Bad</ion-label>
+        <ion-radio value="bad"></ion-radio>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Bad</ion-label>
-      <ion-radio value="bad"></ion-radio>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Share your thoughts from today.</ion-label>
+        <ion-textarea name="journal"></ion-textarea>
+      </ion-item>
 
-  </ion-list> -->
+      <button ion-button type="submit" block>Add Entry</button>
+
+  </ion-list>
+</form>
 
 </ion-content>
