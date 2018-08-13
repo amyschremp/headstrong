@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <!-- <ion-card>
     <ion-card-header>
       <ion-icon float-left name="happy" class="happy-icon"></ion-icon>
       <span float-right>7:25pm</span>
@@ -35,5 +35,26 @@
         </button>
       </ion-col>
     </ion-row>
-  </ion-card>
+  </ion-card> -->
+  <ng-container *ngFor="let entry of entries">
+    <ion-card>
+      <ion-card-header>
+        <ion-icon float-left name="happy" class="happy-icon"></ion-icon>
+        <span float-right>{{ entry.timestamp | date }}</span>
+      </ion-card-header>
+      <ion-card-content>
+        {{ entry.entry }}
+      </ion-card-content>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-start small clear>
+            <ion-icon name="trash"></ion-icon>
+          </button>
+          <button ion-button icon-end float-right small clear>
+            <ion-icon name="brush"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ng-container>
 </ion-content>

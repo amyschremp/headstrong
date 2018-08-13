@@ -17,7 +17,7 @@
 
 
 <ion-content padding>
-<form>
+<form #form="ngForm" (ngSubmit)="save(form)">
   <ion-list radio-group>
 
       <ion-list-header no-lines>
@@ -41,10 +41,10 @@
 
       <ion-item>
         <ion-label floating>Share your thoughts from today.</ion-label>
-        <ion-textarea name="journal"></ion-textarea>
+        <ion-textarea ngModel name="journal"></ion-textarea>
       </ion-item>
 
-      <button ion-button type="submit" (click)="closeModal()" block>Add Entry</button>
+      <button ion-button type="submit" block>Add Entry</button>
 
   </ion-list>
 </form>

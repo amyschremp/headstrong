@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular';
+import { EntriesProvider } from '../../providers/entries/entries';
 
 @Component({
   selector: 'page-home',
@@ -7,7 +8,12 @@ import { ModalController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(private modal: ModalController) {
+  entries = []
+
+  constructor(
+    private modal: ModalController,
+    private entriesProvider: EntriesProvider
+  ) {
 
   }
 
@@ -17,4 +23,11 @@ export class HomePage {
     myModal.present();
   }
 
+  ionViewDidEnter() {
+    this.entriesProvider.getAllEntries().then(res => {
+      res.data.forEach(entry => {
+        this.entries.push(entry)
+      })
+    })
+  }
 }
