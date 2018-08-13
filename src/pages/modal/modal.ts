@@ -16,6 +16,11 @@ import { EntriesProvider } from '../../providers/entries/entries';
 })
 export class ModalPage {
 
+  // initial variables for mood
+  good = false
+  okay = false
+  bad = false
+
   constructor(
     private navParams: NavParams,
      private view: ViewController,
@@ -30,6 +35,7 @@ export class ModalPage {
   save(input) {
     let payload = {
       timestamp: new Date(),
+      mood: this.good ? 'good' : '' || this.okay ? 'okay' : '' || this.bad ? 'bad' : '',
       entry: input.value.journal
     }
     this.entriesProvider.saveEntry(payload).then(res => {
@@ -39,8 +45,16 @@ export class ModalPage {
         window.alert('error')
       }
     })
+  }
 
-    
+  changeValue(value) {
+    // resetting the values in case user changes their answer
+    this.good = false
+    this.okay = false
+    this.bad = false
+
+    // final selected answer is true
+    this[value] = true
   }
 
   closeModal() {

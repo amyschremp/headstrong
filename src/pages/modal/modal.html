@@ -26,17 +26,17 @@
     
       <ion-item>
         <ion-label>Good</ion-label>
-        <ion-radio value="good"></ion-radio>
+        <ion-radio value="good" (ionSelect)="changeValue('good')"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Okay</ion-label>
-        <ion-radio value="okay"></ion-radio>
+        <ion-radio value="okay" (ionSelect)="changeValue('okay')"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Bad</ion-label>
-        <ion-radio value="bad"></ion-radio>
+        <ion-radio value="bad" (ionSelect)="changeValue('bad')"></ion-radio>
       </ion-item>
 
       <ion-item>
