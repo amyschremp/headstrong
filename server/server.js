@@ -37,4 +37,11 @@ app.post('/api/entries/add', (req, res) => {
     entry.save((err, entry) => { return err ? res.sendStatus(500).json(err) : res.json(entry)})
 })
 
+app.post('/api/entries/delete', (req, res) => {
+    Entry.findByIdAndRemove(req.body.id, {}, (error, data) => {
+        if (error) return res.sendStatus(500).json(error)
+        return res.json(data)
+    })
+})
+
 app.listen(3000, () => console.log('Server running on port 3000.'))
