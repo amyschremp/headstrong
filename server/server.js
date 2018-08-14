@@ -37,6 +37,13 @@ app.post('/api/entries/add', (req, res) => {
     entry.save((err, entry) => { return err ? res.sendStatus(500).json(err) : res.json(entry)})
 })
 
+app.post('/api/entries/edit', (req, res) => {
+    Entry.findByIdAndUpdate(req.body.id, {$set: {mood: req.body.mood, entry: req.body.entry}}, (error, data) => {
+        if (error) return res.sendStatus(500).json(error)
+        return res.json(data)
+    })
+})
+
 app.post('/api/entries/delete', (req, res) => {
     Entry.findByIdAndRemove(req.body.id, {}, (error, data) => {
         if (error) return res.sendStatus(500).json(error)

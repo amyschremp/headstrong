@@ -25,7 +25,7 @@ export class EntriesProvider {
   }
 
   editEntry(payload) {
-    
+    return axios.post(`${baseUrl}/api/entries/edit`, payload)
   }
 
   deleteEntry(payload) {

@@ -17,7 +17,7 @@
 
 
 <ion-content padding>
-<form #form="ngForm" (ngSubmit)="save(form)">
+<form #form="ngForm" (ngSubmit)="handle(form)">
   <ion-list radio-group>
 
       <ion-list-header no-lines>
@@ -26,22 +26,22 @@
     
       <ion-item>
         <ion-label>Good</ion-label>
-        <ion-radio value="smile" checked="{{smile}}" (ionSelect)="changeValue('smile')"></ion-radio>
+        <ion-radio value="smile" checked="{{smile}}" required (ionSelect)="changeValue('smile')"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Okay</ion-label>
-        <ion-radio value="meh" checked="{{meh}}" (ionSelect)="changeValue('meh')"></ion-radio>
+        <ion-radio value="meh" checked="{{meh}}" required (ionSelect)="changeValue('meh')"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Bad</ion-label>
-        <ion-radio value="frown" checked="{{frown}}" (ionSelect)="changeValue('frown')"></ion-radio>
+        <ion-radio value="frown" checked="{{frown}}" required (ionSelect)="changeValue('frown')"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Share your thoughts from today.</ion-label>
-        <ion-textarea ngModel name="journal"></ion-textarea>
+        <ion-textarea ngModel="{{entry.entry}}" name="entry"></ion-textarea>
       </ion-item>
 
       <button ion-button type="submit" block>Add Entry</button>

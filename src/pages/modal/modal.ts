@@ -28,9 +28,11 @@ export class ModalPage {
      private view: ViewController,
      private entriesProvider: EntriesProvider
   ) {
-    let entry = navParams.get('entry') || null
-    this.entry = entry
-    this[entry.mood] = true
+    let editEntry = navParams.get('entry') || null
+    if (editEntry) {
+      this.entry = editEntry
+      this[editEntry.mood] = true
+    }
   }
 
   ionViewDidLoad() {
@@ -41,8 +43,9 @@ export class ModalPage {
     let payload = {
       timestamp: new Date(),
       mood: this.smile ? 'smile' : '' || this.meh ? 'meh' : '' || this.frown ? 'frown' : '',
-      entry: input.value.journal
+      entry: input.value.entry
     }
+    console.log('this is the save function', payload)
     this.entriesProvider.saveEntry(payload).then(res => {
       if (res.status === 200) {
         this.closeModal(res.data)
@@ -50,6 +53,31 @@ export class ModalPage {
         window.alert('error')
       }
     })
+  }
+
+  edit(input) {
+    let payload = {
+      id: this.entry._id,
+      timestamp: this.entry.timestamp,
+      mood: this.smile ? 'smile' : '' || this.meh ? 'meh' : '' || this.frown ? 'frown' : '',
+      entry: input.value.entry
+    }
+    console.log('this is the edit function', payload)
+    this.entriesProvider.editEntry(payload).then(res => {
+      if (res.status === 200) {
+        this.closeModal(res.data)
+      } else {
+        window.alert('error')
+      }
+    })
+  }
+
+  handle(form) {
+    if ((this.entry) === null) {
+      this.save(form)
+    } else {
+      this.edit(form)
+    }
   }
 
   changeValue(value) {
@@ -63,7 +91,6 @@ export class ModalPage {
   }
 
   closeModal(data) {
-    this.view.dismiss(data);
+   this.view.dismiss(data);
+    }
   }
-
-}
