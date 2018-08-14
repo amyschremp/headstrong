@@ -17,29 +17,10 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-card>
-    <ion-card-header>
-      <ion-icon float-left name="happy" class="happy-icon"></ion-icon>
-      <span float-right>7:25pm</span>
-    </ion-card-header>
-    <ion-card-content>
-      I had a good day today. I watched tv, walked the dog, did homework...
-    </ion-card-content>
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-start small clear>
-          <ion-icon name="trash"></ion-icon>
-        </button>
-        <button ion-button icon-end float-right small clear>
-          <ion-icon name="brush"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-card> -->
   <ng-container *ngFor="let entry of entries">
     <ion-card>
       <ion-card-header>
-        <ion-icon float-left name="happy" class="happy-icon"></ion-icon>
+        <i float-left class="far fa-{{ entry.mood }}"></i>
         <span float-right>{{ entry.timestamp | date }}</span>
       </ion-card-header>
       <ion-card-content>

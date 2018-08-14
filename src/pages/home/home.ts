@@ -17,6 +17,25 @@ export class HomePage {
 
   }
 
+  // chooses which icon appears on journal entry
+  // chooseIcon(mood) {
+  //   var iconClass = ''
+  //   switch(mood) {
+  //     case 'good':
+  //       iconClass = 'far fa-smile'
+  //       break
+  //     case 'okay':
+  //       iconClass = 'far fa-meh'
+  //       break
+  //     case 'bad':
+  //       iconClass = 'far fa-frown'
+  //       break
+  //     default:
+  //       break
+  //   }
+  //   return iconClass
+  // } 
+
   openModal() {
     const myModal = this.modal.create('ModalPage');
 
