@@ -24,4 +24,12 @@ export class EntriesProvider {
     return axios.post(`${baseUrl}/api/entries/add`, payload)
   }
 
+  editEntry(payload) {
+    
+  }
+
+  deleteEntry(payload) {
+    return axios.post(`${baseUrl}/api/entries/delete`, payload)
+  }
+
 }

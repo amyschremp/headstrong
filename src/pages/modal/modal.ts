@@ -21,11 +21,16 @@ export class ModalPage {
   meh = false
   frown = false
 
+  entry = null
+
   constructor(
     private navParams: NavParams,
      private view: ViewController,
      private entriesProvider: EntriesProvider
   ) {
+    let entry = navParams.get('entry') || null
+    this.entry = entry
+    this[entry.mood] = true
   }
 
   ionViewDidLoad() {
@@ -40,7 +45,7 @@ export class ModalPage {
     }
     this.entriesProvider.saveEntry(payload).then(res => {
       if (res.status === 200) {
-        this.closeModal()
+        this.closeModal(res.data)
       } else {
         window.alert('error')
       }
@@ -57,8 +62,8 @@ export class ModalPage {
     this[value] = true
   }
 
-  closeModal() {
-    this.view.dismiss();
+  closeModal(data) {
+    this.view.dismiss(data);
   }
 
 }

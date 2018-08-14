@@ -26,17 +26,17 @@
     
       <ion-item>
         <ion-label>Good</ion-label>
-        <ion-radio value="smile" (ionSelect)="changeValue('smile')"></ion-radio>
+        <ion-radio value="smile" checked="{{smile}}" (ionSelect)="changeValue('smile')"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Okay</ion-label>
-        <ion-radio value="meh" (ionSelect)="changeValue('meh')"></ion-radio>
+        <ion-radio value="meh" checked="{{meh}}" (ionSelect)="changeValue('meh')"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Bad</ion-label>
-        <ion-radio value="frown" (ionSelect)="changeValue('frown')"></ion-radio>
+        <ion-radio value="frown" checked="{{frown}}" (ionSelect)="changeValue('frown')"></ion-radio>
       </ion-item>
 
       <ion-item>
