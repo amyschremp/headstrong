@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>New Journal Entry</ion-title>
+    <ion-title>{{entry ? "Edit" : "New"}} Journal Entry</ion-title>
     <ion-buttons start>
       <button ion-button (click)="closeModal()">Cancel</button>
     </ion-buttons>
@@ -41,10 +41,10 @@
 
       <ion-item>
         <ion-label floating>Share your thoughts from today.</ion-label>
-        <ion-textarea ngModel="{{entry.entry}}" name="entry"></ion-textarea>
+        <ion-textarea ngModel="{{entry?.entry}}" name="entry"></ion-textarea>
       </ion-item>
 
-      <button ion-button type="submit" block>Add Entry</button>
+      <button ion-button type="submit" block>{{entry ? "Edit" : "Add"}} Entry</button>
 
   </ion-list>
 </form>

@@ -73,11 +73,18 @@ export class ModalPage {
   }
 
   handle(form) {
-    if ((this.entry) === null) {
+    console.log('form', form)
+    console.log('this.entry=', this.entry)
+    if (!this.smile && !this.meh && !this.frown) {
+      console.log(this.smile)
+      window.alert('Please enter a mood.')
+    } else if ((this.entry) === null) {
       this.save(form)
     } else {
       this.edit(form)
     }
+
+
   }
 
   changeValue(value) {
