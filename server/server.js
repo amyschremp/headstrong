@@ -40,7 +40,7 @@ app.post('/api/entries/add', (req, res) => {
 app.post('/api/entries/edit', (req, res) => {
     Entry.findByIdAndUpdate(req.body.id, {$set: {mood: req.body.mood, entry: req.body.entry}}, (error, data) => {
         if (error) return res.sendStatus(500).json(error)
-        return res.json(data)
+        return res.json(req.body)
     })
 })
 

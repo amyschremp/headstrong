@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams, NavController } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
 
 /**
@@ -26,7 +26,7 @@ export class ModalPage {
   constructor(
     private navParams: NavParams,
      private view: ViewController,
-     private entriesProvider: EntriesProvider
+     private entriesProvider: EntriesProvider,
   ) {
     let editEntry = navParams.get('entry') || null
     if (editEntry) {
@@ -45,7 +45,6 @@ export class ModalPage {
       mood: this.smile ? 'smile' : '' || this.meh ? 'meh' : '' || this.frown ? 'frown' : '',
       entry: input.value.entry
     }
-    console.log('this is the save function', payload)
     this.entriesProvider.saveEntry(payload).then(res => {
       if (res.status === 200) {
         this.closeModal(res.data)
@@ -62,9 +61,9 @@ export class ModalPage {
       mood: this.smile ? 'smile' : '' || this.meh ? 'meh' : '' || this.frown ? 'frown' : '',
       entry: input.value.entry
     }
-    console.log('this is the edit function', payload)
     this.entriesProvider.editEntry(payload).then(res => {
       if (res.status === 200) {
+        res.data.edited = true
         this.closeModal(res.data)
       } else {
         window.alert('error')
@@ -73,10 +72,7 @@ export class ModalPage {
   }
 
   handle(form) {
-    console.log('form', form)
-    console.log('this.entry=', this.entry)
     if (!this.smile && !this.meh && !this.frown) {
-      console.log(this.smile)
       window.alert('Please enter a mood.')
     } else if ((this.entry) === null) {
       this.save(form)
@@ -98,6 +94,6 @@ export class ModalPage {
   }
 
   closeModal(data) {
-   this.view.dismiss(data);
+    this.view.dismiss(data);
     }
   }

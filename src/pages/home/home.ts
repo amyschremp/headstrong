@@ -21,7 +21,13 @@ export class HomePage {
   openModal(obj) {
     const myModal = this.modal.create('ModalPage', {entry: obj});
     myModal.onDidDismiss(data => {
-      this.entries.push(data)
+      if (data === undefined) return
+      if (data.edited === true) {
+        let replaceIndex = this.entries.map(entry => entry._id ).indexOf(data.id)
+        this.entries.splice(replaceIndex, 1, data)
+      } else {
+        this.entries.push(data)
+      }
     })
     myModal.present();
   }
