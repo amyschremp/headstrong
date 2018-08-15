@@ -23,7 +23,9 @@ export class HomePage {
     myModal.onDidDismiss(data => {
       if (data === undefined) return
       if (data.edited === true) {
-        let replaceIndex = this.entries.map(entry => entry._id ).indexOf(data.id)
+        data._id = data.id
+        delete data.id
+        let replaceIndex = this.entries.map(entry => entry._id ).indexOf(data._id)
         this.entries.splice(replaceIndex, 1, data)
       } else {
         this.entries.push(data)

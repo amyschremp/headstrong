@@ -4,12 +4,42 @@ page-home {
 
     }
     .fa-smile {
-        color: seagreen;
+        color: #22ce11;
     }
     .fa-meh {
-        color: #eaea12;
+        color: #fec466;
     }
     .fa-frown {
-        color: #1256ea;
+        color: #8066fe;
+    }
+
+    .col {
+        padding: 10px;
+    }
+
+    .card-header span {
+        color: #808080;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .icon {
+        font-size: 1.85em;
+    }
+
+    .ion-ios-brush,
+    .ion-md-brush {
+        color: #47b5ce;
+    }
+
+    .ion-ios-trash,
+    .ion-md-trash {
+        color: #fe6695;
+    }
+
+    .card-content {
+        color: #424242;
     }
 }

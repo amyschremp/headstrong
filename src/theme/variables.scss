@@ -34,7 +34,7 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #B066FE,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
@@ -46,15 +46,34 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+.toolbar-background-ios {
+  background: linear-gradient(to right, #B066FE, #63E2FF 100%) !important;
+}
 
-
+$toolbar-ios-title-text-color: #fff;
+$toolbar-ios-button-color: #fff;
+$toolbar-ios-padding: 25px;
+$toolbar-ios-button-font-size: 2rem;
+$toolbar-ios-title-font-size: 2rem;
+$card-ios-border-radius: 20px;
+$card-ios-margin-top: 35px;
+$card-ios-margin-bottom: 35px;
+$card-ios-header-padding: 20px;
+$card-ios-footer-padding: 20px;
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+.toolbar-background-md {
+  background: linear-gradient(to right, #B066FE, #63E2FF 100%) !important;
+}
 
-
+$toolbar-md-title-text-color: #fff;
+$toolbar-md-padding: 25px;
+$card-md-border-radius: 20px;
+$card-md-margin-top: 35px;
+$card-md-margin-bottom: 35px;
 
 // App Windows Variables
 // --------------------------------------------------
