@@ -9,9 +9,12 @@ app.use(bodyParser.json())
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
     next()
 })
+
+app.use("/", express.static("www"))
 
 mongoose.connect(process.env.DB_URI)
 
@@ -23,7 +26,7 @@ const entrySchema = new mongoose.Schema({
 
 const Entry = mongoose.model('Entry', entrySchema)
 
-app.get('/', (req, res) => res.send('Hello, world!'))
+// app.get('/', (req, res) => res.send('Hello, world!'))
 
 app.get('/api/entries', (req, res) => {
     Entry.find({}, (error, data) => {

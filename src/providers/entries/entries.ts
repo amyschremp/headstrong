@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000'
-
+const baseUrl = 'https://headstrong.app:8080'
 /*
   Generated class for the EntriesProvider provider.
 
@@ -13,23 +12,31 @@ const baseUrl = 'http://localhost:3000'
 export class EntriesProvider {
 
   constructor() {
-    console.log('Hello EntriesProvider Provider');
   }
 
+  api = axios.create({ 
+    baseURL: baseUrl,
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
+      "Accept": "*/*"
+    }
+  })
+
   getAllEntries() {
-    return axios.get(`${baseUrl}/api/entries`)
+    return this.api.get('/api/entries', {data: {}})
   }
 
   saveEntry(payload) {
-    return axios.post(`${baseUrl}/api/entries/add`, payload)
+    return this.api.post('/api/entries/add', payload)
   }
 
   editEntry(payload) {
-    return axios.post(`${baseUrl}/api/entries/edit`, payload)
+    return this.api.post('/api/entries/edit', payload)
   }
 
   deleteEntry(payload) {
-    return axios.post(`${baseUrl}/api/entries/delete`, payload)
+    return this.api.post('/api/entries/delete', payload)
   }
 
 }
