@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 
-const baseUrl = 'https://headstrong.app:8080'
+const baseUrl = 'https://api.headstrong.com'
 /*
   Generated class for the EntriesProvider provider.
 
