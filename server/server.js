@@ -10,8 +10,6 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
-response.set('Access-Control-Allow-Origin', 'https://headstrong.app')
-
 app.use("/", express.static("www"))
 
 mongoose.connect(process.env.DB_URI)

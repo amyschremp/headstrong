@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import Config from '../config'
 
-const baseUrl = 'https://api.headstrong.com'
+if (Config.APP_ENV === 'LOCAL') {
+  var baseUrl = 'http://localhost:3000'
+} else {
+  var baseUrl = 'https://api.headstrong.com'
+}
 /*
   Generated class for the EntriesProvider provider.
 
