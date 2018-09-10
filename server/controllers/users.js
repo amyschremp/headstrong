@@ -1,6 +1,7 @@
 const User = require('../models/user')
+const Session = require('../models/session')
 const bcrypt = require('bcrypt')
-
+const jwt = require('jsonwebtoken')
 
 exports.addUser = (req, res) => {
     let user = new User(req.body)
@@ -8,7 +9,7 @@ exports.addUser = (req, res) => {
 }
 
 exports.login = (req, res) => {
-    return tryLogin(req).then(isMatch => res.sendStatus(200)).catch(err => res.sendStatus(401))
+    return tryLogin(req).then(token => res.json(token)).catch(err => res.sendStatus(401))
 }
 
 exports.findUser = (req, res, next) => {
@@ -25,15 +26,39 @@ exports.findUser = (req, res, next) => {
 const tryLogin = async (req) => {
     let user
     let isMatch
+    let token
+    let newSession
     try {
         user = await User.findOne({email: req.body.email}).exec()
     } catch(err) {
         return err
     }
+
     try {
         isMatch = await bcrypt.compare(req.body.password, user.password)
     } catch(err) {
         return err
     }
-    if (isMatch) return true
+
+    try {
+        token = await jwt.sign({email: req.body.email}, process.env.APP_KEY)
+    } catch(err) {
+        return err
+    }
+
+    let expiration = new Date()
+    expiration.setDate(expiration.getDate() + 7)
+    let session = new Session({
+        token: token,
+        expiration: expiration,
+        email: req.body.email
+    })
+
+    try {
+        newSession = await session.save()
+    } catch(err) {
+        return err
+    }
+
+    return newSession
 }
