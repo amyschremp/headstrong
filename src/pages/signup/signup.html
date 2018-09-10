@@ -7,12 +7,31 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Signup</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <form #form="ngForm" (ngSubmit)="createUser(form)">
+    <ion-item>
+      <ion-label>First Name</ion-label>
+      <ion-input type="text" ngModel name="firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email Address</ion-label>
+      <ion-input type="email" ngModel name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" ngModel name="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Verify Password</ion-label>
+      <ion-input type="password" ngModel name="verifyPass"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Signup</button>
+  </form>
+  <p>Already have an account? <a href="#">Login!</a></p>
 </ion-content>

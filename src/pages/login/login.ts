@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { UsersProvider } from '../../providers/users/users';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LoginPage page.
@@ -15,11 +17,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public usersProvider: UsersProvider
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  login(input) {
+    let payload = {
+      email: input.value.email,
+      password: input.value.password
+    }
+    this.usersProvider.login(payload).then(res => {
+      if (res.status === 200) {
+        console.log(res)
+        return this.navCtrl.push(HomePage)
+      } else {
+        console.error('error')
+      }
+    })
   }
 
 }
