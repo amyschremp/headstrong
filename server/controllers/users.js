@@ -9,7 +9,7 @@ exports.addUser = (req, res) => {
 }
 
 exports.login = (req, res) => {
-    return tryLogin(req).then(token => res.json(token)).catch(err => res.sendStatus(401))
+    return tryLogin(req).then(token => res.json(token)).catch(err => res.sendStatus(401).send(err))
 }
 
 exports.findUser = (req, res, next) => {
@@ -31,34 +31,38 @@ const tryLogin = async (req) => {
     try {
         user = await User.findOne({email: req.body.email}).exec()
     } catch(err) {
-        return err
+        throw err
     }
 
     try {
         isMatch = await bcrypt.compare(req.body.password, user.password)
     } catch(err) {
-        return err
+        throw err
     }
 
-    try {
-        token = await jwt.sign({email: req.body.email}, process.env.APP_KEY)
-    } catch(err) {
-        return err
+    if (isMatch) {
+        try {
+            token = await jwt.sign({email: req.body.email}, process.env.APP_KEY)
+        } catch(err) {
+            throw err
+        }
+    
+        let expiration = new Date()
+        expiration.setDate(expiration.getDate() + 7)
+        let session = new Session({
+            token: token,
+            expiration: expiration,
+            email: req.body.email
+        })
+    
+        try {
+            newSession = await session.save()
+        } catch(err) {
+            throw err
+        }
+    
+        return newSession
+    } else {
+        throw new Error('Username or password is incorrect')
     }
-
-    let expiration = new Date()
-    expiration.setDate(expiration.getDate() + 7)
-    let session = new Session({
-        token: token,
-        expiration: expiration,
-        email: req.body.email
-    })
-
-    try {
-        newSession = await session.save()
-    } catch(err) {
-        return err
-    }
-
-    return newSession
 }

@@ -1,3 +1,5 @@
+const Entry = require('../models/entry')
+
 exports.findAll = (req, res) => {
     Entry.find({}, (error, data) => {
         if (error) return res.sendStatus(500).json(error)

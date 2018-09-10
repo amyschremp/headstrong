@@ -1,5 +1,5 @@
-const moment = require('moment')
-const jwt = require('jwt-simple')
+// const moment = require('moment')
+const jwt = require('jsonwebtoken')
 const Entries = require('./controllers/entries')
 const Users = require('./controllers/users')
 require('dotenv').config()
@@ -9,18 +9,18 @@ const ensureAuthenticated = (req, res, next) => {
         return res.status(401).send({ error: 'TokenMissing' })
 
     let token = req.headers.authorization.split(' ')[1]
-    let payload = null
-
+    // let payload = null
+    let isVerified
     try {
-        payload = jwt.decode(token, process.env.TOKEN_SECRET)
+        isVerified = jwt.verify(token, process.env.APP_KEY)
     } catch(err) {
-        return res.status(401).send({ error: 'TokenInvalid' })
+        return res.status(401).json(err)
     }
-
-    if (payload.exp <= moment().unix())
-        return res.status(401).send({ error: 'TokenExpired' })
-
-    Users.findUser(req, res, next)
+    // if (payload.exp <= moment().unix())
+    //     return res.status(401).send({ error: 'TokenExpired' })
+    console.log(isVerified)
+    // Users.findUser(req, res, next)
+    next()
 }
 
 module.exports = (app) => {

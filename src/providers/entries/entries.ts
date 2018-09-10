@@ -19,12 +19,15 @@ export class EntriesProvider {
   constructor() {
   }
 
+  tokenObject = JSON.parse(localStorage.getItem('tokenObject'))
+
   api = axios.create({ 
     baseURL: baseUrl,
     headers: {
       "X-Requested-With": "XMLHttpRequest",
       "Content-Type": "application/json",
-      "Accept": "*/*"
+      "Accept": "*/*",
+      "Authorization": `Bearer ${this.tokenObject.token}`
     }
   })
 
