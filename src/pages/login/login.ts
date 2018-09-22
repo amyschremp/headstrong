@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { HomePage } from '../home/home';
+import { SignupPage } from '../signup/signup';
 
 /**
  * Generated class for the LoginPage page.
@@ -35,12 +36,16 @@ export class LoginPage {
     }
     this.usersProvider.login(payload).then(res => {
       if (res.status === 200) {
-        localStorage.setItem('tokenObject', JSON.stringify(res.data))
-        return this.navCtrl.push(HomePage)
+        localStorage.setItem('tokenObject', res.data)
+        return this.navCtrl.setRoot(HomePage)
       } else {
         console.error('error')
       }
     })
+  }
+
+  signUp() {
+    this.navCtrl.push(SignupPage)
   }
 
 }

@@ -1,7 +1,7 @@
 const Entry = require('../models/entry')
 
 exports.findAll = (req, res) => {
-    Entry.find({}, (error, data) => {
+    Entry.find({ user: req.body.user }, (error, data) => {
         if (error) return res.sendStatus(500).json(error)
         return res.json(data)
     })

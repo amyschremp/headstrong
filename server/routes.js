@@ -1,4 +1,3 @@
-// const moment = require('moment')
 const jwt = require('jsonwebtoken')
 const Entries = require('./controllers/entries')
 const Users = require('./controllers/users')
@@ -9,17 +8,15 @@ const ensureAuthenticated = (req, res, next) => {
         return res.status(401).send({ error: 'TokenMissing' })
 
     let token = req.headers.authorization.split(' ')[1]
-    // let payload = null
     let isVerified
     try {
         isVerified = jwt.verify(token, process.env.APP_KEY)
     } catch(err) {
         return res.status(401).json(err)
     }
-    // if (payload.exp <= moment().unix())
-    //     return res.status(401).send({ error: 'TokenExpired' })
-    console.log(isVerified)
-    // Users.findUser(req, res, next)
+    if (isVerified.expiration <= new Date())
+        return res.status(401).send({ error: 'TokenExpired' })
+    req.body.user = isVerified.email || null
     next()
 }
 

@@ -5,7 +5,8 @@ mongoose.connect(process.env.DB_URI)
 const entrySchema = new mongoose.Schema({
     timestamp: Date,
     mood: String,
-    entry: String
+    entry: String,
+    user: String
 })
 
 module.exports = mongoose.model('Entry', entrySchema)
