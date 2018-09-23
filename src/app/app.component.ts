@@ -9,7 +9,7 @@ export class MyApp {
   rootPage:any
 
   constructor() {
-    let isAuthenticated = localStorage.getItem('tokenObject')
+    let isAuthenticated = localStorage.getItem('token')
     if (isAuthenticated) {
       this.rootPage = HomePage
     } else {

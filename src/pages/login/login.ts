@@ -36,7 +36,7 @@ export class LoginPage {
     }
     this.usersProvider.login(payload).then(res => {
       if (res.status === 200) {
-        localStorage.setItem('tokenObject', res.data)
+        localStorage.setItem('token', res.data)
         return this.navCtrl.setRoot(HomePage)
       } else {
         console.error('error')
