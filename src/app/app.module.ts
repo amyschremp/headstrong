@@ -10,13 +10,15 @@ import { EntriesProvider } from '../providers/entries/entries';
 import { UsersProvider } from '../providers/users/users';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
+import { MenuComponent } from '../components/menu/menu';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SignupPage,
-    LoginPage
+    LoginPage,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -28,14 +30,16 @@ import { LoginPage } from '../pages/login/login';
     MyApp,
     HomePage,
     SignupPage,
-    LoginPage
+    LoginPage,
+    MenuComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EntriesProvider,
-    UsersProvider
+    UsersProvider,
+    MenuComponent
   ]
 })
 export class AppModule {}

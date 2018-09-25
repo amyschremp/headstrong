@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalController, NavParams } from 'ionic-angular';
+import { ModalController, NavParams, MenuController, NavController } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
+import { UsersProvider } from '../../providers/users/users';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -10,10 +12,15 @@ export class HomePage {
 
   entries = []
 
+  
+
   constructor(
     private navParams: NavParams,
+    private navCtrl: NavController,
     private modal: ModalController,
-    private entriesProvider: EntriesProvider
+    private entriesProvider: EntriesProvider,
+    public menuCtrl: MenuController,
+    private usersProvider: UsersProvider
   ){
 
   }
@@ -31,7 +38,15 @@ export class HomePage {
         this.entries.push(data)
       }
     })
-    myModal.present();
+    myModal.present()
+  }
+
+  openMenu() {
+    this.menuCtrl.open()
+  }
+
+  closeMenu() {
+    this.menuCtrl.close()
   }
 
   deleteEntry(id) {

@@ -32,4 +32,6 @@ module.exports = (app) => {
     app.post('/api/users/add', Users.addUser)
     
     app.post('/api/users/login', Users.login)
+
+    app.get('/api/users/logout', Users.logout)
 }

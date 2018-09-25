@@ -34,4 +34,8 @@ export class UsersProvider {
     return this.api.post('/api/users/login', payload)
   }
 
+  logout() {
+    return this.api.post('/api/users/logout')
+  }
+
 }
