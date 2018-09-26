@@ -12,13 +12,12 @@ export class MyApp {
 
   constructor(
   ) {
-    // let isAuthenticated = localStorage.getItem('token')
-    // if (isAuthenticated) {
-    //   this.rootPage = HomePage
-    // } else {
-    //   this.rootPage = LoginPage
-    // }
-    this.rootPage = HomePage
+    let isAuthenticated = localStorage.getItem('token')
+    if (isAuthenticated) {
+      this.rootPage = HomePage
+    } else {
+      this.rootPage = LoginPage
+    }
   }
 }
 
