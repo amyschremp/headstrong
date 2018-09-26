@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { UsersProvider } from '../../providers/users/users';
+import { Nav, MenuController, App } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
-import { Nav, NavController } from 'ionic-angular';
 
 /**
  * Generated class for the MenuComponent component.
@@ -15,23 +14,19 @@ import { Nav, NavController } from 'ionic-angular';
 })
 export class MenuComponent {
 
-  @ViewChild(NavController) nav: Nav
+  @ViewChild("menu") nav: Nav
 
   constructor(
-    private usersProvider: UsersProvider,
+    private menuCtrl: MenuController,
+    public appCtrl: App
     ) {
 
   }
   
   logout() {
-    this.usersProvider.logout().then(res => {
-      if (res.status === 200) {
-        localStorage.removeItem('token')
-        return this.nav.setRoot(LoginPage)
-      } else {
-        console.error('error')
-      }
-    })
+    // gets the root navigation controller
+    this.appCtrl.getRootNav().setRoot(LoginPage)
+    this.menuCtrl.close()
   }
 
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
@@ -17,6 +17,8 @@ import { SignupPage } from '../signup/signup';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+
+  @ViewChild("menu") nav: Nav
 
   constructor(
     public navCtrl: NavController,

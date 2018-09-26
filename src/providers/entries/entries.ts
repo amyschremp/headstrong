@@ -11,7 +11,8 @@ if (Config.APP_ENV === 'LOCAL') {
 @Injectable()
 export class EntriesProvider {
 
-  constructor() {
+  constructor(
+  ) {
   }
 
   token = localStorage.getItem('token')
@@ -41,5 +42,4 @@ export class EntriesProvider {
   deleteEntry(payload) {
     return this.api.post('/api/entries/delete', payload)
   }
-
 }

@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-import { ModalController, NavParams, MenuController, NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { ModalController, MenuController, NavController, Nav, NavParams } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
-import { UsersProvider } from '../../providers/users/users';
-import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -10,9 +8,9 @@ import { LoginPage } from '../login/login';
 })
 export class HomePage {
 
-  entries = []
+  @ViewChild("menu") nav: Nav
 
-  
+  entries = []
 
   constructor(
     private navParams: NavParams,
@@ -20,19 +18,18 @@ export class HomePage {
     private modal: ModalController,
     private entriesProvider: EntriesProvider,
     public menuCtrl: MenuController,
-    private usersProvider: UsersProvider
-  ){
+  ) {
 
   }
 
   openModal(obj) {
-    const myModal = this.modal.create('ModalPage', {entry: obj});
+    const myModal = this.modal.create('ModalPage', { entry: obj })
     myModal.onDidDismiss(data => {
       if (data === undefined) return
       if (data.edited === true) {
         data._id = data.id
         delete data.id
-        let replaceIndex = this.entries.map(entry => entry._id ).indexOf(data._id)
+        let replaceIndex = this.entries.map(entry => entry._id).indexOf(data._id)
         this.entries.splice(replaceIndex, 1, data)
       } else {
         this.entries.push(data)
