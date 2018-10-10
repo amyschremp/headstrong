@@ -1,9 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, MenuController, App } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
+<<<<<<< HEAD
 import { UsersProvider } from '../../providers/users/users';
 import { EntriesProvider } from '../../providers/entries/entries'
 
+=======
+>>>>>>> 6b6c4b09293125b4df1472de165c0a00c0e8383c
 
 /**
  * Generated class for the MenuComponent component.
