@@ -11,23 +11,16 @@ if (Config.APP_ENV === 'LOCAL') {
 @Injectable()
 export class EntriesProvider {
 
-  constructor() {
+  constructor(
+  ) {
   }
 
-  token = localStorage.getItem('token')
-
-  api = axios.create({ 
-    baseURL: baseUrl,
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      "Content-Type": "application/json",
-      "Accept": "*/*",
-      "Authorization": `Bearer ${this.token}`
-    }
-  })
+  token = null
+  api = null
 
   getAllEntries() {
-    return this.api.get('/api/entries', {data: {}})
+    return this.api.get('/api/entries', {})
+
   }
 
   saveEntry(payload) {
@@ -42,4 +35,21 @@ export class EntriesProvider {
     return this.api.post('/api/entries/delete', payload)
   }
 
+  clearToken() {
+    this.token = null
+    this.api = null
+  }
+
+  initToken() {
+    this.token = localStorage.getItem('token')
+    this.api = axios.create({ 
+      baseURL: baseUrl,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json",
+        "Accept": "*/*",
+        "Authorization": `Bearer ${this.token}`
+      }
+    })
+  }
 }

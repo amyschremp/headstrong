@@ -5,9 +5,9 @@ const SALT_WORK_FACTOR = 10
 mongoose.connect(process.env.DB_URI)
 
 const userSchema = new mongoose.Schema({
-    firstName: String,
-    email: { type: String, unique: true },
-    password: String
+    firstName: { type: String, required: true },
+    email: { type: String, unique: true, required: true },
+    password: { type: String, required: true }
 })
 
 userSchema.pre('save', function (next) {

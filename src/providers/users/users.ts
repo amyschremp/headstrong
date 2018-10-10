@@ -22,7 +22,7 @@ export class UsersProvider {
       "X-Requested-With": "XMLHttpRequest",
       "Content-Type": "application/json",
       "Accept": "*/*",
-      "Authorization": `Bearer ${this.token}`
+      // "Authorization": `Bearer ${this.token}`
     }
   })
 

@@ -16,7 +16,7 @@ const ensureAuthenticated = (req, res, next) => {
     }
     if (isVerified.expiration <= new Date())
         return res.status(401).send({ error: 'TokenExpired' })
-    req.body.user = isVerified.email || null
+    req.body.user = isVerified.email ? isVerified.email : null
     next()
 }
 
@@ -32,4 +32,6 @@ module.exports = (app) => {
     app.post('/api/users/add', Users.addUser)
     
     app.post('/api/users/login', Users.login)
+
+    app.post('/api/users/logout', Users.logout)
 }
