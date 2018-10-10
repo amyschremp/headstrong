@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ModalController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { ModalController, MenuController, NavController, Nav, NavParams } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
 
 @Component({
@@ -8,30 +8,42 @@ import { EntriesProvider } from '../../providers/entries/entries';
 })
 export class HomePage {
 
+  @ViewChild("menu") nav: Nav
+
   entries = []
 
   constructor(
     private navParams: NavParams,
+    private navCtrl: NavController,
     private modal: ModalController,
-    private entriesProvider: EntriesProvider
-  ){
+    private entriesProvider: EntriesProvider,
+    public menuCtrl: MenuController,
+  ) {
 
   }
 
   openModal(obj) {
-    const myModal = this.modal.create('ModalPage', {entry: obj});
+    const myModal = this.modal.create('ModalPage', { entry: obj })
     myModal.onDidDismiss(data => {
       if (data === undefined) return
       if (data.edited === true) {
         data._id = data.id
         delete data.id
-        let replaceIndex = this.entries.map(entry => entry._id ).indexOf(data._id)
+        let replaceIndex = this.entries.map(entry => entry._id).indexOf(data._id)
         this.entries.splice(replaceIndex, 1, data)
       } else {
         this.entries.push(data)
       }
     })
-    myModal.present();
+    myModal.present()
+  }
+
+  openMenu() {
+    this.menuCtrl.open()
+  }
+
+  closeMenu() {
+    this.menuCtrl.close()
   }
 
   deleteEntry(id) {

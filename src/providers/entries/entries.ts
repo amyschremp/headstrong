@@ -7,29 +7,20 @@ if (Config.APP_ENV === 'LOCAL') {
 } else {
   var baseUrl = 'https://api.headstrong.com'
 }
-/*
-  Generated class for the EntriesProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class EntriesProvider {
 
-  constructor() {
+  constructor(
+  ) {
   }
 
-  api = axios.create({ 
-    baseURL: baseUrl,
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      "Content-Type": "application/json",
-      "Accept": "*/*"
-    }
-  })
+  token = null
+  api = null
 
   getAllEntries() {
-    return this.api.get('/api/entries', {data: {}})
+    return this.api.get('/api/entries', {})
+
   }
 
   saveEntry(payload) {
@@ -44,4 +35,21 @@ export class EntriesProvider {
     return this.api.post('/api/entries/delete', payload)
   }
 
+  clearToken() {
+    this.token = null
+    this.api = null
+  }
+
+  initToken() {
+    this.token = localStorage.getItem('token')
+    this.api = axios.create({ 
+      baseURL: baseUrl,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json",
+        "Accept": "*/*",
+        "Authorization": `Bearer ${this.token}`
+      }
+    })
+  }
 }
