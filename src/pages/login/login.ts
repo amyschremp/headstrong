@@ -34,25 +34,23 @@ export class LoginPage {
   }
 
   login(input) {
-    // if (!input.value.email) {
-    //   window.alert('Please enter your email address.')
-    // } else if (!input.value.password) {
-    //   window.alert('Please enter your password.')
-    // } else {
+    if (!input.value.email) {
+      window.alert('Please enter your email address.')
+    } else if (!input.value.password) {
+      window.alert('Please enter your password.')
+    } else {
       let payload = {
         email: input.value.email,
         password: input.value.password
       }
       this.usersProvider.login(payload).then(res => {
-        if (res.status === 200) {
-          localStorage.setItem('token', res.data)
-          this.entriesProvider.initToken()
-          return this.navCtrl.setRoot(HomePage)
-        } else {
-          console.error('error')
-        }
+        localStorage.setItem('token', res.data)
+        this.entriesProvider.initToken()
+        return this.navCtrl.setRoot(HomePage)
+      }).catch(err => {
+        window.alert('Username and password do not match')
       })
-    // }
+    }
   }
 
   signUp() {
