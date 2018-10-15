@@ -32,6 +32,7 @@ server/node_modules
 server/.env
 www/
 $RECYCLE.BIN/
+src/providers/config.ts
 
 .DS_Store
 Thumbs.db

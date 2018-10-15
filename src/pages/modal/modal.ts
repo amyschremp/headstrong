@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
 
 /**
@@ -9,7 +9,6 @@ import { EntriesProvider } from '../../providers/entries/entries';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
@@ -24,7 +23,7 @@ export class ModalPage {
   entry = null
 
   constructor(
-    private navParams: NavParams,
+     private navParams: NavParams,
      private view: ViewController,
      private entriesProvider: EntriesProvider,
   ) {

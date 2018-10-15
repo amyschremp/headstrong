@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { NavController, NavParams, Nav } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
@@ -12,7 +12,6 @@ import { EntriesProvider } from '../../providers/entries/entries'
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',

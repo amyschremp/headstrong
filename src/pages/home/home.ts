@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { ModalController, MenuController, NavController, Nav, NavParams } from 'ionic-angular';
+import { ModalController, MenuController, Nav } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
+import { ModalPage } from '../modal/modal';
 
 @Component({
   selector: 'page-home',
@@ -13,8 +14,6 @@ export class HomePage {
   entries = []
 
   constructor(
-    private navParams: NavParams,
-    private navCtrl: NavController,
     private modal: ModalController,
     private entriesProvider: EntriesProvider,
     public menuCtrl: MenuController,
@@ -23,7 +22,7 @@ export class HomePage {
   }
 
   openModal(obj) {
-    const myModal = this.modal.create('ModalPage', { entry: obj })
+    const myModal = this.modal.create(ModalPage, { entry: obj })
     myModal.onDidDismiss(data => {
       if (data === undefined) return
       if (data.edited === true) {
@@ -65,6 +64,7 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
+    this.entriesProvider.initToken()
     this.entriesProvider.getAllEntries().then(res => {
       res.data.forEach(entry => {
         this.entries.push(entry)

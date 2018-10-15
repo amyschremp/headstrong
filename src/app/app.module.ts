@@ -11,6 +11,7 @@ import { UsersProvider } from '../providers/users/users';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
 import { MenuComponent } from '../components/menu/menu';
+import { ModalPage } from '../pages/modal/modal';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MenuComponent } from '../components/menu/menu';
     HomePage,
     SignupPage,
     LoginPage,
-    MenuComponent
+    MenuComponent,
+    ModalPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { MenuComponent } from '../components/menu/menu';
     HomePage,
     SignupPage,
     LoginPage,
-    MenuComponent
+    MenuComponent,
+    ModalPage
   ],
   providers: [
     StatusBar,
