@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import axios from 'axios'
 import Config from '../config'
 
-if (Config.APP_ENV === 'LOCAL') {
-  var baseUrl = 'http://localhost:3000'
-} else {
-  var baseUrl = 'https://api.headstrong.com'
-}
+var baseUrl = Config.APP_ENV === 'LOCAL' ? 'http://localhost:3000' : 'https://api.headstrong.app'
 
 @Injectable()
 export class UsersProvider {

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { HomePage } from '../home/home';
-import { ValueTransformer } from '@angular/compiler/src/util';
 
 /**
  * Generated class for the SignupPage page.
@@ -11,9 +10,6 @@ import { ValueTransformer } from '@angular/compiler/src/util';
  * Ionic pages and navigation.
  */
 
-@IonicPage({
-  name: 'signup'
-})
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
